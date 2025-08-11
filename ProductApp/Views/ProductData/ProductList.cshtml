@@ -1,0 +1,39 @@
+﻿@model List<ProductApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a href="/ProductData/Create" class="btn btn-success">Add New Product</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price ($)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var product in Model)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@product.Category</td>
+            <td>@product.Price.ToString("F2")</td>
+            <td>
+                <a href="/ProductData/Edit/@product.Id" class="btn btn-primary btn-sm">Edit</a>
+                <a href="/ProductData/Delete/@product.Id" class="btn btn-danger btn-sm" 
+                   onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
